@@ -2,6 +2,9 @@ package com.johanny.curso.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "tb_atividade")
 public class Atividade {
@@ -21,16 +24,23 @@ public class Atividade {
     @JoinColumn(name = "blocos_id")
     private Bloco blocos;
 
+    @ManyToMany
+    @JoinTable(name = "tb_atividade_participante",
+            joinColumns = @JoinColumn(name = "atividade_id"),
+            inverseJoinColumns = @JoinColumn(name = "participante_id"))
+    private Set<Participante> participantes = new HashSet<>();
+
     public Atividade(){
     }
 
-    public Atividade(Integer id, String nome, String descricao, Double preco, Categoria categoria, Bloco blocos) {
+    public Atividade(Integer id, String nome, String descricao, Double preco, Categoria categoria, Bloco blocos, Set<Participante> participantes) {
         Id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.categoria = categoria;
         this.blocos = blocos;
+        this.participantes = participantes;
     }
 
     public Integer getId() {
@@ -71,5 +81,9 @@ public class Atividade {
 
     public Bloco getBlocos() {
         return blocos;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
     }
 }
