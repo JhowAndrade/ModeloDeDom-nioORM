@@ -21,7 +21,7 @@ public class Atividade {
     private Categoria categoria;
 
     @ManyToOne
-    @JoinColumn(name = "blocos_id")
+    @JoinColumn(name = "bloco_id")
     private Bloco blocos;
 
     @ManyToMany

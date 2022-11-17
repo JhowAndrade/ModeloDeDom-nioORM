@@ -13,7 +13,7 @@ public class Participante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String name;
+    private String nome;
 
     @Column(unique = true)
     private String email;
@@ -24,9 +24,9 @@ public class Participante {
     public Participante(){
     }
 
-    public Participante(Integer id, String name, String email, Set<Atividade> atividades) {
+    public Participante(Integer id, String nome, String email, Set<Atividade> atividades) {
         this.id = id;
-        this.name = name;
+        this.nome = nome;
         this.email = email;
         this.atividades = atividades;
     }
@@ -39,12 +39,12 @@ public class Participante {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {

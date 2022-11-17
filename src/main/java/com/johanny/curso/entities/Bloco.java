@@ -3,6 +3,10 @@ package com.johanny.curso.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_bloco")
@@ -18,14 +22,13 @@ public class Bloco {
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant fim;
 
-    @OneToOne
-    @MapsId
-    private Atividade atividade;
+    @ManyToMany(mappedBy = "blocos")
+    private List<Atividade> atividade = new ArrayList<>();
 
     public Bloco(){
-
     }
-    public Bloco(Integer id, Instant inicio, Instant fim, Atividade atividade) {
+
+    public Bloco(Integer id, Instant inicio, Instant fim, List<Atividade> atividade) {
         this.id = id;
         this.inicio = inicio;
         this.fim = fim;
@@ -56,11 +59,7 @@ public class Bloco {
         this.fim = fim;
     }
 
-    public Atividade getAtividade() {
+    public List<Atividade> getAtividade() {
         return atividade;
-    }
-
-    public void setAtividade(Atividade atividade) {
-        this.atividade = atividade;
     }
 }
